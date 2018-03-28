@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     
     let messageArray  = ["May the force be with you","Live long and prosper","To infinity and beyond","Space is big. You just won't believe how vastly, hugely, mindbogglinly big it is"]
     var index=0
+    var lightOn=true
+    
+    
+    @IBOutlet weak var messageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +31,23 @@ class ViewController: UIViewController {
 
     @IBAction func doButtonTap(_ sender: UIButton) {
         print("Button Touched")
-        let nextString = self.messageArray[index]
-        self.messageLabel.text = nextString
-        index = index + 1
+        updateUI()
+        lightOn = !lightOn
+    }
+    
+    // Cleaning
+    func updateUI() {
+        if lightOn == true{
+            self.messageLabel.text = "White"
+            self.messageLabel.textColor = UIColor.black
+            view.backgroundColor = .white
+            self.messageButton.setTitle("Off", for: .normal)
+        } else{
+            self.messageLabel.text="Black"
+            self.messageLabel.textColor = UIColor.white
+            view.backgroundColor = .black
+            self.messageButton.setTitle("On", for: .normal)
+        }
     }
 
 }
